@@ -6,35 +6,45 @@ const ContactSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contact" className="py-32 lg:py-48">
+    <section id="contact" className="py-32 lg:py-48 bg-secondary">
       <div className="container mx-auto px-6 lg:px-12 text-center" ref={ref}>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-8"
+          transition={{ duration: 0.6 }}
+          className="font-body text-xs tracking-[0.3em] uppercase text-muted-foreground mb-8"
         >
-          Get in Touch
+          Contact
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-display text-4xl md:text-6xl lg:text-8xl font-medium text-foreground mb-12 leading-[1.1]"
+          className="font-display text-4xl md:text-6xl lg:text-8xl font-bold text-foreground mb-4 leading-[1.05]"
         >
-          Let's create
-          <br />
-          something <span className="italic text-primary">extraordinary</span>
+          Let's <span className="text-accent">connect</span>
         </motion.h2>
-        <motion.a
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          href="mailto:hello@studio.com"
-          className="inline-block font-body text-lg tracking-wider text-foreground border-b border-primary pb-2 hover:text-primary transition-colors duration-300"
+          className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-12"
         >
-          hello@studio.com
-        </motion.a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-sm tracking-[0.1em] uppercase px-8 py-4 border border-foreground/20 rounded-full text-foreground hover:bg-foreground hover:text-primary-foreground transition-all duration-300"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:hello@alexmorgan.com"
+            className="font-body text-sm tracking-[0.1em] uppercase px-8 py-4 bg-accent text-accent-foreground rounded-full hover:opacity-90 transition-opacity duration-300"
+          >
+            hello@alexmorgan.com
+          </a>
+        </motion.div>
       </div>
     </section>
   );

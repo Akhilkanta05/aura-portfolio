@@ -1,64 +1,60 @@
 import { motion } from "framer-motion";
-import heroBg from "@/assets/hero-bg.jpg";
+import portrait from "@/assets/portrait.jpg";
+
+const marqueeText = "Alex Morgan  ·  Alex Morgan  ·  Alex Morgan  ·  Alex Morgan  ·  Alex Morgan  ·  Alex Morgan  ·  ";
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen flex items-end overflow-hidden">
-      {/* Background */}
+    <section className="relative h-screen flex flex-col justify-end overflow-hidden">
+      {/* Portrait background */}
       <motion.div
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: [0.65, 0, 0.35, 1] }}
+        transition={{ duration: 1.8, ease: [0.65, 0, 0.35, 1] }}
         className="absolute inset-0"
       >
         <img
-          src={heroBg}
-          alt="Cinematic architectural space"
-          className="w-full h-full object-cover"
+          src={portrait}
+          alt="Alex Morgan portrait"
+          className="w-full h-full object-cover object-top"
         />
-        <div className="absolute inset-0 bg-background/50" />
+        <div className="absolute inset-0 bg-background/30" />
       </motion.div>
 
-      {/* Content */}
-      <div className="relative container mx-auto px-6 lg:px-12 pb-20 lg:pb-32">
-        <div className="max-w-4xl">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-6"
-          >
-            Creative Director & Designer
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] tracking-tight text-foreground"
-          >
-            Crafting
-            <br />
-            <span className="italic text-primary">Visual</span>
-            <br />
-            Experiences
-          </motion.h1>
-        </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 right-6 lg:right-12 flex flex-col items-center gap-2"
-        >
-          <span className="font-body text-xs tracking-widest uppercase text-muted-foreground rotate-90 origin-center mb-8">
-            Scroll
+      {/* Marquee text overlay */}
+      <div className="absolute bottom-[30%] left-0 w-full overflow-hidden pointer-events-none">
+        <div className="animate-marquee whitespace-nowrap flex">
+          <span className="font-display text-[8vw] md:text-[7vw] font-extrabold uppercase text-foreground/90 tracking-tight">
+            {marqueeText}
           </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
-            className="w-px h-12 bg-primary/50"
-          />
+          <span className="font-display text-[8vw] md:text-[7vw] font-extrabold uppercase text-foreground/90 tracking-tight">
+            {marqueeText}
+          </span>
+        </div>
+      </div>
+
+      {/* Bottom info */}
+      <div className="relative container mx-auto px-6 lg:px-12 pb-10 flex items-end justify-between">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="font-body text-xs tracking-[0.2em] uppercase text-foreground/60"
+        >
+          Based in New York, USA
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="text-right"
+        >
+          <p className="font-body text-xs tracking-[0.15em] uppercase text-foreground/60">
+            Creative Director
+          </p>
+          <p className="font-body text-xs tracking-[0.15em] uppercase text-foreground/60 mt-1">
+            Brand & Digital Design
+          </p>
         </motion.div>
       </div>
     </section>

@@ -7,36 +7,45 @@ import project4 from "@/assets/project-4.jpg";
 
 const projects = [
   {
-    title: "Noir Identity",
-    category: "Brand Identity",
-    location: "Paris · 2024–2025",
-    description: "Complete brand overhaul for a luxury fashion house — from strategy to visual identity across all touchpoints.",
-    tags: ["Branding", "Strategy", "Print"],
+    title: "Data Analytics Dashboard",
+    category: "Data Visualization",
+    description: "An interactive dashboard that visualizes and analyzes raw data using dynamic charts, filters, and real-time insights.",
+    tags: ["Python", "Power BI", "EDA", "Visualization"],
     image: project1,
   },
   {
-    title: "Luxe Digital",
-    category: "Web Design",
-    location: "London · 2023–2024",
-    description: "Immersive digital experience for a high-end hospitality brand. Full-stack design from concept through launch.",
-    tags: ["Web", "UI/UX", "Motion"],
+    title: "AI Voice Assistant",
+    category: "Artificial Intelligence",
+    description: "A conversational AI system that understands voice commands and performs tasks using speech recognition and automation.",
+    tags: ["Python", "Speech Recognition", "NLP", "Automation"],
     image: project2,
   },
   {
-    title: "Essence Packaging",
-    category: "Packaging Design",
-    location: "Milan · 2023",
-    description: "Premium packaging system for a sustainable beauty brand, balancing luxury with environmental responsibility.",
-    tags: ["Packaging", "Print", "Sustainability"],
+    title: "E-Commerce Recommendation Engine",
+    category: "Machine Learning",
+    description: "A machine learning model that recommends products to users based on preferences, browsing history, and behavior patterns.",
+    tags: ["ML", "Python", "Clustering", "Feature Engineering"],
     image: project3,
   },
   {
-    title: "Editorial Quarterly",
-    category: "Editorial Design",
-    location: "New York · 2022–2024",
-    description: "Art direction and layout design for a culture and design magazine. Four issues per year, print and digital.",
-    tags: ["Editorial", "Art Direction", "Typography"],
+    title: "Face Recognition Attendance",
+    category: "Computer Vision",
+    description: "An automated system that detects faces and marks attendance in real time using computer vision and deep learning.",
+    tags: ["OpenCV", "Python", "Deep Learning", "Real-time"],
     image: project4,
+  },
+];
+
+const moreProjects = [
+  {
+    title: "Ticket Booking System",
+    description: "Full-stack application enabling users to browse shows, select seats, and book tickets with database-backed management.",
+    tags: ["Full-Stack", "JavaScript", "Database"],
+  },
+  {
+    title: "Password Suggestion & Smart CAPTCHA Extension",
+    description: "Chrome extension that generates strong password suggestions and includes a smart CAPTCHA interaction feature for faster logins.",
+    tags: ["Chrome Extension", "JavaScript", "Security"],
   },
 ];
 
@@ -54,16 +63,50 @@ const WorkSection = () => {
           className="mb-16 lg:mb-24"
         >
           <p className="font-body text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
-            Selected Work
+            Projects
           </p>
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
-            Featured Projects
+            What I've Built
           </h2>
         </motion.div>
 
-        <div className="space-y-20 lg:space-y-32">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
+        {/* Featured projects */}
+        <div className="space-y-20 lg:space-y-32 mb-20 lg:mb-32">
+          {projects.map((project, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <ProjectCard key={project.title} project={project} isEven={isEven} />
+            );
+          })}
+        </div>
+
+        {/* More projects as list */}
+        <div className="border-t border-border pt-12">
+          <p className="font-body text-xs tracking-[0.3em] uppercase text-muted-foreground mb-8">
+            More Projects
+          </p>
+          {moreProjects.map((project, i) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+              className="group border-b border-border py-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-12 cursor-pointer hover:pl-4 transition-all duration-500"
+            >
+              <h4 className="font-display text-lg lg:text-xl font-bold text-foreground group-hover:text-accent transition-colors duration-300 md:w-80 shrink-0">
+                {project.title}
+              </h4>
+              <p className="font-body text-sm text-muted-foreground flex-1">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2 shrink-0">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="font-body text-xs px-3 py-1 rounded-full bg-secondary text-secondary-foreground">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -71,10 +114,9 @@ const WorkSection = () => {
   );
 };
 
-const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+const ProjectCard = ({ project, isEven }: { project: typeof projects[0]; isEven: boolean }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const isEven = index % 2 === 0;
 
   return (
     <motion.div
@@ -82,19 +124,14 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
       initial={{ opacity: 0, y: 60 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8 }}
-      className={`group grid lg:grid-cols-2 gap-8 lg:gap-16 items-center cursor-pointer ${isEven ? "" : "lg:direction-rtl"}`}
+      className="group grid lg:grid-cols-2 gap-8 lg:gap-16 items-center cursor-pointer"
     >
       <div className={`image-zoom rounded-lg bg-secondary aspect-[4/3] ${isEven ? "" : "lg:order-2"}`}>
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-full object-cover rounded-lg"
-        />
+        <img src={project.image} alt={project.title} className="w-full h-full object-cover rounded-lg" />
       </div>
-
       <div className={isEven ? "" : "lg:order-1"}>
-        <p className="font-body text-xs tracking-[0.15em] uppercase text-muted-foreground mb-3">
-          {project.location}
+        <p className="font-body text-xs tracking-[0.15em] uppercase text-accent mb-3">
+          {project.category}
         </p>
         <h3 className="font-display text-2xl lg:text-3xl font-bold text-foreground group-hover:text-accent transition-colors duration-300 mb-3">
           {project.title}
@@ -104,10 +141,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
         </p>
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="font-body text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground"
-            >
+            <span key={tag} className="font-body text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">
               {tag}
             </span>
           ))}

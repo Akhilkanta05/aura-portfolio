@@ -2,9 +2,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "About Me", href: "#about" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#services" },
+  { label: "Projects", href: "#work" },
+  { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -15,7 +16,7 @@ const Header = () => {
     <header className="fixed top-0 left-0 w-full z-50">
       <div className="container mx-auto flex items-center justify-between py-5 px-6 lg:px-12">
         <a href="#" className="font-display text-sm font-bold tracking-[0.2em] uppercase text-foreground">
-          ALEX MORGAN
+          VAK
         </a>
 
         <nav className="hidden md:flex gap-10">

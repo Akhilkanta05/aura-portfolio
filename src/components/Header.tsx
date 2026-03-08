@@ -2,9 +2,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
+  { label: "Work", href: "#work" },
+  { label: "About Me", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -12,26 +12,24 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 mix-blend-difference">
-      <div className="container mx-auto flex items-center justify-between py-6 px-6 lg:px-12">
-        <a href="#" className="font-display text-xl tracking-wider text-foreground">
-          STUDIO
+    <header className="fixed top-0 left-0 w-full z-50">
+      <div className="container mx-auto flex items-center justify-between py-5 px-6 lg:px-12">
+        <a href="#" className="font-display text-sm font-bold tracking-[0.2em] uppercase text-foreground">
+          ALEX MORGAN
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex gap-8">
+        <nav className="hidden md:flex gap-10">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="font-body text-sm tracking-widest uppercase text-foreground line-reveal opacity-80 hover:opacity-100 transition-opacity duration-300"
+              className="font-body text-xs tracking-[0.15em] uppercase text-foreground/70 hover:text-foreground transition-colors duration-300 line-reveal pb-1"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Mobile burger */}
         <button
           className="md:hidden flex flex-col gap-1.5 z-50"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -52,7 +50,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -70,7 +67,7 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   onClick={() => setMenuOpen(false)}
-                  className="font-display text-4xl text-foreground"
+                  className="font-display text-3xl font-bold uppercase text-foreground"
                 >
                   {link.label}
                 </motion.a>

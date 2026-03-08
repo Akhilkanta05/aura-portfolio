@@ -3,16 +3,16 @@ const Footer = () => {
     <footer className="border-t border-border py-10">
       <div className="container mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
         <span className="font-display text-sm font-bold tracking-[0.2em] uppercase text-foreground">
-          Alex Morgan
+          Venkatesh Akhil Kanta
         </span>
         <div className="flex gap-8">
-          {["Twitter", "Dribbble", "LinkedIn", "Instagram"].map((social) => (
+          {["LinkedIn", "GitHub", "Portfolio"].map((link) => (
             <a
-              key={social}
+              key={link}
               href="#"
               className="font-body text-xs text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-[0.1em] uppercase"
             >
-              {social}
+              {link}
             </a>
           ))}
         </div>
